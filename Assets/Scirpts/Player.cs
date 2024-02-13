@@ -10,6 +10,13 @@ public class Player : MonoBehaviour
     public bool isTouchLeft;
     public bool isTouchRight;
 
+    Animator anime;
+
+    private void Awake()
+    {
+        anime = GetComponent<Animator>();
+    }
+
     void Update()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -24,9 +31,12 @@ public class Player : MonoBehaviour
         Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
 
         transform.position = curPos + nextPos;
+
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
+            anime.SetInteger("Input", (int)h);
     }
 
-    public void OnTriggerEnter2D(Collider collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Border")
         {
@@ -49,7 +59,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void OnTriggerExit2D(Collider collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")
         {

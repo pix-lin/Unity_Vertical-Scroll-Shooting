@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
     public bool isTouchTop;
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+
+    public float speed;
+    public float maxShotDelay;
+    public float curShotDelay;
+
+    public GameObject bulletObjA;
+    public GameObject bulletObjB;
 
     Animator anime;
 
@@ -18,6 +24,23 @@ public class Player : MonoBehaviour
     }
 
     void Update()
+    {
+        Move();
+        Fire();
+
+    }
+
+    void Fire()
+    {
+        if (!Input.GetButton("Fire1"))
+            return;
+
+        GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+    }
+
+    void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
         if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))

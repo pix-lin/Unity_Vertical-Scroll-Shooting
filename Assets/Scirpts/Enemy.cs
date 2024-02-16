@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.damage);
+            //collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
         }
             
     }

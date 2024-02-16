@@ -864,11 +864,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77480d7cce430d844b35faf5d26d274f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   isTouchTop: 0
   isTouchBottom: 0
   isTouchLeft: 0
   isTouchRight: 0
+  speed: 10
+  power: 0
+  maxShotDelay: 0.15
+  curShotDelay: 0
   bulletObjA: {fileID: 8131017225188809052, guid: 646feb9af25ce0c44b2a1873c98fb993, type: 3}
   bulletObjB: {fileID: 2279807282441750580, guid: d979505b6c437b44286d9bff45610b9a, type: 3}
 --- !u!212 &1415691760

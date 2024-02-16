@@ -58,9 +58,9 @@ public class Player : MonoBehaviour
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 3:
-                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.25f, transform.rotation);
+                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.3f, transform.rotation);
                 GameObject bulletCC = Instantiate(bulletObjB, transform.position, transform.rotation);
-                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.25f, transform.rotation);
+                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.3f, transform.rotation);
                 Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();

@@ -161,7 +161,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss 0
+      name: Enemies_0
       rect:
         serializedVersion: 2
         x: 0
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d377660cda52d6e10800000000000000
-      internalID: 2192450021786810173
+      spriteID: 1a30c89a3666c794e91b2567197b1b6b
+      internalID: -1551203239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss 1
+      name: Enemies_1
       rect:
         serializedVersion: 2
         x: 67
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89acfd8bbbf766790800000000000000
-      internalID: -7537196482120660328
+      spriteID: 4b5b7dd70828cde499298417b8391e49
+      internalID: -1381567390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss 2
+      name: Enemies_2
       rect:
         serializedVersion: 2
         x: 134
@@ -214,17 +214,25 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 25, y: 33}
+        - {x: -24, y: 33}
+        - {x: -33, y: 19}
+        - {x: -33, y: -27}
+        - {x: -15, y: -33}
+        - {x: 27, y: -33}
+        - {x: 33, y: -19}
+        - {x: 33, y: 23}
       tessellationDetail: 0
       bones: []
-      spriteID: eae2e888b400f04f0800000000000000
-      internalID: -860468679390908754
+      spriteID: 3f76a6a7d3723e6448ef8678116ba747
+      internalID: -270706625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Hit
+      name: Enemies_3
       rect:
         serializedVersion: 2
         x: 0
@@ -238,14 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce9c46d5cbc7ab190800000000000000
-      internalID: -7945901444079236628
+      spriteID: 147ed8ff50974eb41bd9dedbeac9ec7d
+      internalID: 317656811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy C
+      name: Enemies_4
       rect:
         serializedVersion: 2
         x: 67
@@ -259,14 +267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8515d6a968f02b80800000000000000
-      internalID: -8421458170528590454
+      spriteID: a53adffb82827bb4885b622335bfc67a
+      internalID: -914602527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy B
+      name: Enemies_5
       rect:
         serializedVersion: 2
         x: 100
@@ -277,17 +285,23 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -12, y: 12}
+        - {x: -12, y: 5.5114365}
+        - {x: 0, y: -12}
+        - {x: 0, y: -12}
+        - {x: 12, y: 4.9178925}
+        - {x: 12, y: 12}
       tessellationDetail: 0
       bones: []
-      spriteID: 403d85e4b6c9310f0800000000000000
-      internalID: -1147401495359466748
+      spriteID: 743a55967fe8e2843a029a53bb81e429
+      internalID: -808028184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy A
+      name: Enemies_6
       rect:
         serializedVersion: 2
         x: 125
@@ -301,14 +315,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9edd06f65ab36c470800000000000000
-      internalID: 8414478535512612329
+      spriteID: cba81c5cefdfcbc43b2caeada5c8a24a
+      internalID: -737897985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy C Hit
+      name: Enemies_7
       rect:
         serializedVersion: 2
         x: 67
@@ -322,14 +336,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2411e64b25da8330800000000000000
-      internalID: 3714015224569861163
+      spriteID: 1db1a13c4353d60448d202273797bc62
+      internalID: 1033679662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy B Hit
+      name: Enemies_8
       rect:
         serializedVersion: 2
         x: 100
@@ -343,14 +357,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea74ea1de65822390800000000000000
-      internalID: -7844560889915226194
+      spriteID: d36674e1a09ea304792fb77ee149c55f
+      internalID: 1706428158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy A Hit
+      name: Enemies_9
       rect:
         serializedVersion: 2
         x: 125
@@ -364,8 +378,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c88031598f0a0c30800000000000000
-      internalID: 4326287474489854147
+      spriteID: 3822330982cde604ea311b94abc9e2da
+      internalID: -467194317
       vertices: []
       indices: 
       edges: []
@@ -381,16 +395,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Boss 0: 2192450021786810173
-      Boss 1: -7537196482120660328
-      Boss 2: -860468679390908754
-      Boss Hit: -7945901444079236628
-      Enemy A: 8414478535512612329
-      Enemy A Hit: 4326287474489854147
-      Enemy B: -1147401495359466748
-      Enemy B Hit: -7844560889915226194
-      Enemy C: -8421458170528590454
-      Enemy C Hit: 3714015224569861163
+      Enemies_0: -1551203239
+      Enemies_1: -1381567390
+      Enemies_2: -270706625
+      Enemies_3: 317656811
+      Enemies_4: -914602527
+      Enemies_5: -808028184
+      Enemies_6: -737897985
+      Enemies_7: 1033679662
+      Enemies_8: 1706428158
+      Enemies_9: -467194317
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

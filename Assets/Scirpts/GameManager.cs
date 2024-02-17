@@ -9,4 +9,27 @@ public class GameManager : MonoBehaviour
 
     public float maxSpawnDelay;
     public float curSpawnDelay;
+
+    private void Update()
+    {
+        curSpawnDelay += Time.deltaTime;
+
+        if (curSpawnDelay > maxSpawnDelay)
+        {
+            SpawnEnemy();
+            maxSpawnDelay = Random.Range(0.5f, 3f);
+            curSpawnDelay = 0;
+        }
+            
+    }
+
+    void SpawnEnemy()
+    {
+        int ranEnemy = Random.Range(0, 3);
+        int ranPoint = Random.Range(0, 5);
+
+        Instantiate(ememyObjs[ranEnemy], spawnPoints[ranPoint].position, spawnPoints[ranPoint].rotation);
+
+    }
 }
+

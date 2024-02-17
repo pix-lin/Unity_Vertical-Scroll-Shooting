@@ -26,10 +26,27 @@ public class GameManager : MonoBehaviour
     void SpawnEnemy()
     {
         int ranEnemy = Random.Range(0, 3);
-        int ranPoint = Random.Range(0, 5);
+        int ranPoint = Random.Range(0, 9);
 
-        Instantiate(ememyObjs[ranEnemy], spawnPoints[ranPoint].position, spawnPoints[ranPoint].rotation);
+        GameObject enemy = Instantiate(ememyObjs[ranEnemy], spawnPoints[ranPoint].position, spawnPoints[ranPoint].rotation);
 
+        Rigidbody2D rigid = enemy.GetComponent<Rigidbody2D>();
+        Enemy enemyLogic = enemy.GetComponent<Enemy>();
+
+        if (ranPoint == 5 || ranPoint == 6) //¿ÞÂÊ
+        {
+            enemy.transform.Rotate(Vector3.forward * 90);
+            rigid.velocity = new Vector2(enemyLogic.speed * 1, -1);
+        }
+        else if (ranPoint == 7 || ranPoint == 8) //¿À¸¥ÂÊ
+        {
+            enemy.transform.Rotate(Vector3.back * 90);
+            rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
+        }
+        else
+        {
+            rigid.velocity = new Vector2(0, enemyLogic.speed * -1);
+        }
     }
 }
 

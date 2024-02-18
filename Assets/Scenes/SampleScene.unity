@@ -1054,7 +1054,7 @@ MonoBehaviour:
   isTouchLeft: 0
   isTouchRight: 0
   speed: 10
-  power: 1
+  power: 3
   maxShotDelay: 0.15
   curShotDelay: 0
   bulletObjA: {fileID: 8131017225188809052, guid: 646feb9af25ce0c44b2a1873c98fb993, type: 3}

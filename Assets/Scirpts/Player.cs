@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     public bool isTouchLeft;
     public bool isTouchRight;
 
+    public int Life;
+    public int Score;
+
     public float speed;
     public float power;
     public float maxShotDelay;

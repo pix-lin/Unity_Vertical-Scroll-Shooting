@@ -875,6 +875,7 @@ MonoBehaviour:
   - {fileID: 1908343893}
   maxSpawnDelay: 3
   curSpawnDelay: 0
+  player: {fileID: 1415691758}
 --- !u!1 &1278838042
 GameObject:
   m_ObjectHideFlags: 0

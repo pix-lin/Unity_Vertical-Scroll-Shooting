@@ -36,15 +36,15 @@ public class Enemy : MonoBehaviour
 
         if (enemyName == "L")
         {
-            GameObject bulletL = Instantiate(bulletObjB, transform.position + Vector3.left * 0.3f, transform.rotation);
-            GameObject bulletR = Instantiate(bulletObjB, transform.position + Vector3.right * 0.3f, transform.rotation);
+            GameObject bulletL = Instantiate(bulletObjB, transform.position + Vector3.left * 0.25f, transform.rotation);
+            GameObject bulletR = Instantiate(bulletObjB, transform.position + Vector3.right * 0.25f, transform.rotation);
             Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
             Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
 
-            Vector3 dirVecL = player.transform.position - transform.position + Vector3.left * 0.3f;
-            Vector3 dirVecR = player.transform.position - transform.position + Vector3.right * 0.3f;
+            Vector3 dirVecL = player.transform.position - transform.position + Vector3.left * 0.25f;
+            Vector3 dirVecR = player.transform.position - transform.position + Vector3.right * 0.25f;
             rigidL.AddForce(dirVecL.normalized * 10, ForceMode2D.Impulse);
-            rigidR.AddForce(dirVecR.normalized * 10, ForceMode2D.Impulse);
+            rigidR.AddForce(dirVecR.normalized * 7.5f, ForceMode2D.Impulse);
         }
 
         else if (enemyName == "S")

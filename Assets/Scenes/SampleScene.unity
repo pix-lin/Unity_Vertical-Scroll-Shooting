@@ -1059,6 +1059,7 @@ MonoBehaviour:
   curShotDelay: 0
   bulletObjA: {fileID: 8131017225188809052, guid: 646feb9af25ce0c44b2a1873c98fb993, type: 3}
   bulletObjB: {fileID: 2279807282441750580, guid: d979505b6c437b44286d9bff45610b9a, type: 3}
+  gameManager: {fileID: 887185907}
 --- !u!212 &1415691760
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1119,7 +1120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415691758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.92245686, y: -1.4759759, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

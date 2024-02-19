@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -89,11 +88,17 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = Vector3.down * 3.5f;
         player.SetActive(true);
+        playerLogic.isHit = false;
     }
 
     public void GameOver()
     {
         gameOver.SetActive(true);
+    }
+
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(0);
     }
 }
 

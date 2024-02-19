@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+    public bool isHit;
 
     public int life;
     public int score;
@@ -128,6 +129,10 @@ public class Player : MonoBehaviour
 
         else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
+            if (isHit)
+                return;
+
+            isHit = true;
             life--;
             gameManager.UpdateLifeUI(life);
 
@@ -142,6 +147,7 @@ public class Player : MonoBehaviour
 
             gameObject.SetActive(false);
             Destroy(collision.gameObject);
+            isHit = true;
         }
 
     }

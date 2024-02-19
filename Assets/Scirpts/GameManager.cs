@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +13,15 @@ public class GameManager : MonoBehaviour
     public float curSpawnDelay;
 
     public GameObject player;
+    public TextMeshProUGUI scoreText;
+    public Image[] lifeImage;
+    public GameObject gameOver;
+    Player playerLogic;
+
+    private void Awake()
+    {
+        playerLogic = player.GetComponent<Player>();
+    }
 
     private void Update()
     {
@@ -22,7 +33,9 @@ public class GameManager : MonoBehaviour
             maxSpawnDelay = Random.Range(0.5f, 3f);
             curSpawnDelay = 0;
         }
-            
+
+        //UI Score UPdate
+        scoreText.text = string.Format("{0:n0}", playerLogic.score);
     }
 
     void SpawnEnemy()
@@ -52,6 +65,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateLifeUI(int life)
+    {
+        //Life UI Init Disable
+        for (int index = 0; index < 3; index++)
+        {
+            lifeImage[index].color = new Color(1, 1, 1, 0);
+        }
+
+        //Life UI Active
+        for (int index = 0; index < life; index++ )
+        {
+            lifeImage[index].color = new Color(1, 1, 1, 1);
+        }
+    }
+
     public void RespawnPlayer()
     {
         Invoke("RespawnPlayerExe", 2.0f);
@@ -61,6 +89,11 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = Vector3.down * 3.5f;
         player.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
     }
 }
 

@@ -164,6 +164,7 @@ MonoBehaviour:
   enemyName: S
   speed: 0.9
   health: 25
+  enemyScore: 30
   sprites:
   - {fileID: -737897985, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   - {fileID: -467194317, guid: 138040323294fd440a3a823e5d70ad01, type: 3}

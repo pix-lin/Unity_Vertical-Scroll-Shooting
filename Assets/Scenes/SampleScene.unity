@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f4eb11a02fd7d4c952173c46ae9f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Boom
 --- !u!1 &310399688
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f4eb11a02fd7d4c952173c46ae9f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Power
 --- !u!1 &358772757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,6 +2360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f4eb11a02fd7d4c952173c46ae9f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Coin
 --- !u!1 &1522372179
 GameObject:
   m_ObjectHideFlags: 0

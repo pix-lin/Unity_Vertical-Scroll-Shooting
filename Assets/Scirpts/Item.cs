@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string type;
+    Rigidbody2D rigid;
+
+    private void Awake()
     {
-        
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = Vector2.down * 3;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }

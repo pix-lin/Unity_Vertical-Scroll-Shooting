@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     public void UpdateLifeUI(int life)
     {
         //Life UI Init Disable
-        for (int index = 0; index < 3; index++)
+        for (int index = 0; index < playerLogic.maxLife; index++)
         {
             lifeImage[index].color = new Color(1, 1, 1, 0);
         }

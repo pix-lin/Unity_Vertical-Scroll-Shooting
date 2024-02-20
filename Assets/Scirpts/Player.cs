@@ -13,15 +13,18 @@ public class Player : MonoBehaviour
     public bool isHit;
 
     public int life;
+    public int maxLife;
     public int score;
+    public int power;
+    public int maxPower;
 
     public float speed;
-    public float power;
     public float maxShotDelay;
     public float curShotDelay;
 
     public GameObject bulletObjA;
     public GameObject bulletObjB;
+    public GameObject boomEffect;
     public GameManager gameManager;
     
 
@@ -150,6 +153,50 @@ public class Player : MonoBehaviour
             isHit = true;
         }
 
+        else if (collision.gameObject.tag == "Item")
+        {
+            Item item = collision.gameObject.GetComponent<Item>();
+
+            switch (item.type)
+            {
+                case "Coin":
+                    score += 1000;
+                    break;
+                case "Power":
+                    if (power == maxPower)
+                        score += 500;
+                    else
+                        power++;
+                    break;
+                    
+                case "Boom":
+                    //Effect visible
+                    boomEffect.SetActive(true);
+                    Invoke("OffBoomEffect", 4.0f);
+                    //Remove Enemy
+                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int index = 0; index < enemies.Length; index++)
+                    {
+                        Enemy enemyLogic = enemies[index].GetComponent<Enemy>();
+                        enemyLogic.OnHit(1000);
+                    }
+
+                    //Remove Enemy Bullet
+                    GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+                    for (int index = 0; index < bullets.Length; index++)
+                    {
+                        Destroy(bullets[index]);
+                    }
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
+
+    }
+
+    void OffBoomEffect()
+    {
+        boomEffect.SetActive(false);
     }
 
     public void OnTriggerExit2D(Collider2D collision)

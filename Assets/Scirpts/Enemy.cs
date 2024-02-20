@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnHit(int damage)
+    public void OnHit(int damage)
     {
         health -= damage;
         spriteRenderer.sprite = sprites[1];

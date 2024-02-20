@@ -11,12 +11,15 @@ public class Player : MonoBehaviour
     public bool isTouchLeft;
     public bool isTouchRight;
     public bool isHit;
+    public bool isBoomTime;
 
     public int life;
     public int maxLife;
     public int score;
     public int power;
     public int maxPower;
+    public int maxBoom;
+    public int curBoom;
 
     public float speed;
     public float maxShotDelay;
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+        Boom();
         Reload();
     }
 
@@ -84,6 +88,38 @@ public class Player : MonoBehaviour
         curShotDelay = 0;
     }
 
+    void Boom()
+    {
+        if (!Input.GetButton("Fire2"))
+            return;
+
+        if (isBoomTime)
+            return;
+
+        if (curBoom == 0)
+            return;
+
+        curBoom--;
+        isBoomTime = true;
+        //Effect visible
+        boomEffect.SetActive(true);
+        Invoke("OffBoomEffect", 3.0f);
+        //Remove Enemy
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int index = 0; index < enemies.Length; index++)
+        {
+            Enemy enemyLogic = enemies[index].GetComponent<Enemy>();
+            enemyLogic.OnHit(1000);
+        }
+
+        //Remove Enemy Bullet
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        for (int index = 0; index < bullets.Length; index++)
+        {
+            Destroy(bullets[index]);
+        }
+
+    }
     void Reload()
     {
         curShotDelay += Time.deltaTime;
@@ -170,23 +206,10 @@ public class Player : MonoBehaviour
                     break;
                     
                 case "Boom":
-                    //Effect visible
-                    boomEffect.SetActive(true);
-                    Invoke("OffBoomEffect", 4.0f);
-                    //Remove Enemy
-                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                    for (int index = 0; index < enemies.Length; index++)
-                    {
-                        Enemy enemyLogic = enemies[index].GetComponent<Enemy>();
-                        enemyLogic.OnHit(1000);
-                    }
-
-                    //Remove Enemy Bullet
-                    GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
-                    for (int index = 0; index < bullets.Length; index++)
-                    {
-                        Destroy(bullets[index]);
-                    }
+                    if (curBoom == maxBoom)
+                        score += 500;
+                    else
+                        curBoom++;
                     break;
             }
             Destroy(collision.gameObject);
@@ -197,6 +220,7 @@ public class Player : MonoBehaviour
     void OffBoomEffect()
     {
         boomEffect.SetActive(false);
+        isBoomTime = false;
     }
 
     public void OnTriggerExit2D(Collider2D collision)

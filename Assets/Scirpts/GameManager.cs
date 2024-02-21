@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public TextMeshProUGUI scoreText;
     public Image[] lifeImage;
+    public Image[] boomImage;
     public GameObject gameOver;
     Player playerLogic;
 
@@ -76,6 +77,21 @@ public class GameManager : MonoBehaviour
         for (int index = 0; index < life; index++ )
         {
             lifeImage[index].color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    public void UpdateBoomUI(int boom)
+    {
+        //Boom UI Init Disable
+        for (int index = 0; index < playerLogic.maxBoom; index++)
+        {
+            boomImage[index].color = new Color(1, 1, 1, 0);
+        }
+
+        //Boom UI Active
+        for (int index = 0; index < boom; index++)
+        {
+            boomImage[index].color = new Color(1, 1, 1, 1);
         }
     }
 

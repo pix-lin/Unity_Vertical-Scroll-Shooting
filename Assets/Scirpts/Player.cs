@@ -101,6 +101,8 @@ public class Player : MonoBehaviour
 
         curBoom--;
         isBoomTime = true;
+        gameManager.UpdateBoomUI(curBoom);
+
         //Effect visible
         boomEffect.SetActive(true);
         Invoke("OffBoomEffect", 3.0f);
@@ -209,7 +211,11 @@ public class Player : MonoBehaviour
                     if (curBoom == maxBoom)
                         score += 500;
                     else
+                    {
                         curBoom++;
+                        gameManager.UpdateBoomUI(curBoom);
+                    }
+                        
                     break;
             }
             Destroy(collision.gameObject);
@@ -220,7 +226,7 @@ public class Player : MonoBehaviour
     void OffBoomEffect()
     {
         boomEffect.SetActive(false);
-        isBoomTime = false;
+        isBoomTime = false; 
     }
 
     public void OnTriggerExit2D(Collider2D collision)

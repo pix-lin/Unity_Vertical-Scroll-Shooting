@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
 
     public GameObject bulletObjA;
     public GameObject bulletObjB;
+    public GameObject itemCoin;
+    public GameObject itemPower;
+    public GameObject itemBoom;
     public GameObject player;
 
     private void Awake()
@@ -44,8 +47,8 @@ public class Enemy : MonoBehaviour
 
             Vector3 dirVecL = player.transform.position - transform.position + Vector3.left * 0.25f;
             Vector3 dirVecR = player.transform.position - transform.position + Vector3.right * 0.25f;
-            rigidL.AddForce(dirVecL.normalized * 5.5f, ForceMode2D.Impulse);
-            rigidR.AddForce(dirVecR.normalized * 5.5f, ForceMode2D.Impulse);
+            rigidL.AddForce(dirVecL.normalized * 3.5f, ForceMode2D.Impulse);
+            rigidR.AddForce(dirVecR.normalized * 3.5f, ForceMode2D.Impulse);
         }
 
         else if (enemyName == "S")
@@ -68,6 +71,9 @@ public class Enemy : MonoBehaviour
 
     public void OnHit(int damage)
     {
+        if (health <= 0)
+            return;
+
         health -= damage;
         spriteRenderer.sprite = sprites[1];
         Invoke("ReturnSprite", 0.1f);
@@ -76,6 +82,28 @@ public class Enemy : MonoBehaviour
         {
             Player playerLogic = player.GetComponent<Player>();
             playerLogic.score += enemyScore;
+
+            //Random Ratio Item Drop
+            int ran = Random.Range(0, 10);
+            if(ran < 5) //Nothing 0.5
+            {
+                Debug.Log("Not Item");
+            }
+            else if (ran < 8) //Coin 0.3
+            {
+                Instantiate(itemCoin, transform.position, itemCoin.transform.rotation);
+            }
+
+            else if (ran < 9) //Power 0.1
+            {
+                Instantiate(itemPower, transform.position, itemPower.transform.rotation);
+            }
+
+            else if (ran < 10) //Boom 0.1
+            {
+                Instantiate(itemBoom, transform.position, itemBoom.transform.rotation);
+            }
+
             Destroy(gameObject);
         }
         

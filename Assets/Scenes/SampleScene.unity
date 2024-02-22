@@ -1838,6 +1838,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8573eadf688d340a097435f97ce76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLPrefab: {fileID: 6448516839033514572, guid: 74200e14c98219749b0aa1bcbd7fb4c9, type: 3}
+  enemyMPrefab: {fileID: 7157092009319598083, guid: 0aa5e4d935c058748949837adbc3eecc, type: 3}
+  enemySPrefab: {fileID: 8938223522425224647, guid: ff3c82f26fc36a44d8b40c0edc24f07b, type: 3}
+  itemCoinPrefab: {fileID: 2431388148129065851, guid: c8940ef66dc9ee7418b96396044f6bbe, type: 3}
+  itemPowerPrefab: {fileID: 5879359281421180534, guid: 6bc16f68694dec94b9fd293949135d94, type: 3}
+  itemBoomPrefab: {fileID: 8806173133373034911, guid: 225eb41998234ad4c9f87291bff913c1, type: 3}
+  bulletPlayerAPrefab: {fileID: 8131017225188809052, guid: 646feb9af25ce0c44b2a1873c98fb993, type: 3}
+  bulletPlayerBPrefab: {fileID: 2279807282441750580, guid: d979505b6c437b44286d9bff45610b9a, type: 3}
+  bulletEnemyAPrefab: {fileID: 2279807282441750580, guid: adadc7780cc41c54e8496148625ffefc, type: 3}
+  bulletEnemyBPrefab: {fileID: 2279807282441750580, guid: cbc8f09138852b84d90bff89e8648d14, type: 3}
 --- !u!4 &708643765
 Transform:
   m_ObjectHideFlags: 0

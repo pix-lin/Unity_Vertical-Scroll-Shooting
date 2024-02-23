@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public Image[] lifeImage;
     public Image[] boomImage;
     public GameObject gameOver;
+    public ObjectManager objectManager;
+
     Player playerLogic;
 
     private void Awake()

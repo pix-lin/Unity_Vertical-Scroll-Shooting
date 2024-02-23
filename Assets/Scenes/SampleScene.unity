@@ -2073,6 +2073,7 @@ MonoBehaviour:
   - {fileID: 453553942}
   - {fileID: 566992736}
   gameOver: {fileID: 358772757}
+  objectManager: {fileID: 708643764}
 --- !u!1 &908851127
 GameObject:
   m_ObjectHideFlags: 0

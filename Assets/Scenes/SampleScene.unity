@@ -2046,10 +2046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204b6a074450a2b4684b2ec56a980e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ememyObjs:
-  - {fileID: 8938223522425224647, guid: ff3c82f26fc36a44d8b40c0edc24f07b, type: 3}
-  - {fileID: 7157092009319598083, guid: 0aa5e4d935c058748949837adbc3eecc, type: 3}
-  - {fileID: 6448516839033514572, guid: 74200e14c98219749b0aa1bcbd7fb4c9, type: 3}
+  enemyObjs: []
   spawnPoints:
   - {fileID: 628964920}
   - {fileID: 26301823}
@@ -2173,7 +2170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1278838043
 Transform:
   m_ObjectHideFlags: 0
@@ -2435,6 +2432,7 @@ MonoBehaviour:
   bulletObjB: {fileID: 2279807282441750580, guid: d979505b6c437b44286d9bff45610b9a, type: 3}
   boomEffect: {fileID: 1895195734}
   gameManager: {fileID: 887185907}
+  objectManager: {fileID: 708643764}
 --- !u!212 &1415691760
 SpriteRenderer:
   m_ObjectHideFlags: 0

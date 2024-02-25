@@ -3955,7 +3955,7 @@ MonoBehaviour:
   curShotDelay: 0
   objectManager: {fileID: 708643764}
   followPos: {x: 0, y: 0, z: 0}
-  followDelay: 0
+  followDelay: 15
   parent: {fileID: 1415691761}
 --- !u!1 &2125167246
 GameObject:

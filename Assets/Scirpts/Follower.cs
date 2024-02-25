@@ -31,12 +31,17 @@ public class Follower : MonoBehaviour
     void Watch()
     {
         //Input Pos
+        if (!parentPos.Contains(parent.position))
         parentPos.Enqueue(parent.position);
         
         //Output Pos
         if (parentPos.Count > followDelay)
         {
             followPos = parentPos.Dequeue();
+        }
+        else if (parentPos.Count < followDelay)
+        {
+            followPos = parent.position;
         }
         
     }

@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     public GameManager gameManager;
     public ObjectManager objectManager;
 
+    public GameObject[] followers;
+
     Animator anime;
 
     private void Awake()
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
-            case 3:
+            default:
                 GameObject bulletRR = objectManager.MakeObj("BulletPlayerA");
                 GameObject bulletCC = objectManager.MakeObj("BulletPlayerB");
                 GameObject bulletLL = objectManager.MakeObj("BulletPlayerA");
@@ -112,6 +114,7 @@ public class Player : MonoBehaviour
         //Effect visible
         boomEffect.SetActive(true);
         Invoke("OffBoomEffect", 3.0f);
+        Debug.Log("Hello!");
 
         //Remove Enemy
         //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -121,20 +124,30 @@ public class Player : MonoBehaviour
 
         for (int index = 0; index < enemiesL.Length; index++)
         {
-            Enemy enemyLogic = enemiesL[index].GetComponent<Enemy>();
-            enemyLogic.OnHit(1000);
+            if (enemiesL[index].activeSelf)
+            {
+                Enemy enemyLogic = enemiesL[index].GetComponent<Enemy>();
+                enemyLogic.OnHit(1000);
+            }
+           
         }
 
         for (int index = 0; index < enemiesM.Length; index++)
         {
-            Enemy enemyLogic = enemiesM[index].GetComponent<Enemy>();
-            enemyLogic.OnHit(1000);
+            if (enemiesM[index].activeSelf)
+            {
+                Enemy enemyLogic = enemiesM[index].GetComponent<Enemy>();
+                enemyLogic.OnHit(1000);
+            }
         }
 
         for (int index = 0; index < enemiesS.Length; index++)
         {
-            Enemy enemyLogic = enemiesS[index].GetComponent<Enemy>();
-            enemyLogic.OnHit(1000);
+            if (enemiesS[index].activeSelf)
+            {
+                Enemy enemyLogic = enemiesS[index].GetComponent<Enemy>();
+                enemyLogic.OnHit(1000);
+            }
         }
 
         //Remove Enemy Bullet
@@ -235,7 +248,10 @@ public class Player : MonoBehaviour
                     if (power == maxPower)
                         score += 500;
                     else
+                    {
                         power++;
+                        AddFollower();
+                    }
                     break;
                     
                 case "Boom":
@@ -258,6 +274,16 @@ public class Player : MonoBehaviour
     {
         boomEffect.SetActive(false);
         isBoomTime = false; 
+    }
+
+    void AddFollower()
+    {
+        if (power == 4)
+            followers[0].SetActive(true);
+        else if (power == 5)
+            followers[1].SetActive(true);
+        else if (power == 6)
+            followers[2].SetActive(true);
     }
 
     public void OnTriggerExit2D(Collider2D collision)

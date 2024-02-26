@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         spawnList = new List<Spawn>();
         playerLogic = player.GetComponent<Player>();
-        enemyObjs = new string[] { "EnemyL", "EnemyM", "EnemyS"};
+        enemyObjs = new string[] { "EnemyL", "EnemyM", "EnemyS", "EnemyB"};
         ReadSpawnFile();
     }
 
@@ -96,6 +96,9 @@ public class GameManager : MonoBehaviour
                 break;
              case "S":
                 enemyIndex = 2;
+                break;
+            case "B":
+                enemyIndex = 3;
                 break;
         }
         int enemyPoint = spawnList[spawnIndex].point;

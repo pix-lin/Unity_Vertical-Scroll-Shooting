@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+    public GameObject enemyBPrefab;
     public GameObject enemyLPrefab;
     public GameObject enemyMPrefab;
     public GameObject enemySPrefab;
@@ -15,8 +16,11 @@ public class ObjectManager : MonoBehaviour
     public GameObject bulletPlayerBPrefab;
     public GameObject bulletEnemyAPrefab;
     public GameObject bulletEnemyBPrefab;
+    public GameObject bulletBossCPrefab;
+    public GameObject bulletBossDPrefab;
     public GameObject bulletFollowerPrefab;
 
+    GameObject[] enemyB;
     GameObject[] enemyL;
     GameObject[] enemyM;
     GameObject[] enemyS;
@@ -29,12 +33,15 @@ public class ObjectManager : MonoBehaviour
     GameObject[] bulletPlayerB;
     GameObject[] bulletEnemyA;
     GameObject[] bulletEnemyB;
+    GameObject[] bulletBossC;
+    GameObject[] bulletBossD;
     GameObject[] bulletFollower;
 
     GameObject[] targetPool;
 
     private void Awake()
     {
+        enemyB = new GameObject[1];
         enemyL = new GameObject[10];
         enemyM = new GameObject[10];
         enemyS = new GameObject[20];
@@ -47,6 +54,8 @@ public class ObjectManager : MonoBehaviour
         bulletPlayerB = new GameObject[100];
         bulletEnemyA = new GameObject[100];
         bulletEnemyB = new GameObject[100];
+        bulletBossC = new GameObject[100];
+        bulletBossD = new GameObject[100];
         bulletFollower = new GameObject[100];
 
         Generate();
@@ -55,6 +64,12 @@ public class ObjectManager : MonoBehaviour
     void Generate()
     {
         //Enemy
+        for (int index = 0; index < enemyB.Length; index++)
+        {
+            enemyB[index] = Instantiate(enemyBPrefab);
+            enemyB[index].SetActive(false);
+        }
+
         for (int index = 0; index < enemyL.Length; index++)
         {
             enemyL[index] = Instantiate(enemyLPrefab);
@@ -117,6 +132,18 @@ public class ObjectManager : MonoBehaviour
             bulletEnemyB[index].SetActive(false);
         }
 
+        for (int index = 0; index < bulletBossC.Length; index++)
+        {
+            bulletBossC[index] = Instantiate(bulletBossCPrefab);
+            bulletBossC[index].SetActive(false);
+        }
+
+        for (int index = 0; index < bulletBossD.Length; index++)
+        {
+            bulletBossD[index] = Instantiate(bulletBossDPrefab);
+            bulletBossD[index].SetActive(false);
+        }
+
         for (int index = 0; index < bulletFollower.Length; index++)
         {
             bulletFollower[index] = Instantiate(bulletFollowerPrefab);
@@ -129,6 +156,9 @@ public class ObjectManager : MonoBehaviour
         
         switch (type)
         {
+            case "EnemyB":
+                targetPool = enemyB;
+                break;
             case "EnemyL":
                 targetPool = enemyL;
                     break;
@@ -161,6 +191,12 @@ public class ObjectManager : MonoBehaviour
             case "BulletEnemyB":
                 targetPool = bulletEnemyB;
                 break;
+            case "BulletEnemyBossC":
+                targetPool = bulletBossC;
+                break;
+            case "BulletEnemyBossD":
+                targetPool = bulletBossD;
+                break;
             case "BulletFollower":
                 targetPool = bulletFollower;
                 break;
@@ -182,6 +218,9 @@ public class ObjectManager : MonoBehaviour
     {
         switch (type)
         {
+            case "EnemyB":
+                targetPool = enemyB;
+                break;
             case "EnemyL":
                 targetPool = enemyL;
                 break;
@@ -213,6 +252,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletEnemyB":
                 targetPool = bulletEnemyB;
+                break;
+            case "BulletEnemyBossC":
+                targetPool = bulletBossC;
+                break;
+            case "BulletEnemyBossD":
+                targetPool = bulletBossD;
                 break;
             case "BulletFollwer":
                 targetPool = bulletFollower;

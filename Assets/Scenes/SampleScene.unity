@@ -1941,6 +1941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8573eadf688d340a097435f97ce76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBPrefab: {fileID: 3006439353733507535, guid: c8210346a829a8f40a4ddb8d04356867, type: 3}
   enemyLPrefab: {fileID: 6448516839033514572, guid: 74200e14c98219749b0aa1bcbd7fb4c9, type: 3}
   enemyMPrefab: {fileID: 7157092009319598083, guid: 0aa5e4d935c058748949837adbc3eecc, type: 3}
   enemySPrefab: {fileID: 8938223522425224647, guid: ff3c82f26fc36a44d8b40c0edc24f07b, type: 3}
@@ -1951,6 +1952,8 @@ MonoBehaviour:
   bulletPlayerBPrefab: {fileID: 2279807282441750580, guid: d979505b6c437b44286d9bff45610b9a, type: 3}
   bulletEnemyAPrefab: {fileID: 2279807282441750580, guid: adadc7780cc41c54e8496148625ffefc, type: 3}
   bulletEnemyBPrefab: {fileID: 2279807282441750580, guid: cbc8f09138852b84d90bff89e8648d14, type: 3}
+  bulletBossCPrefab: {fileID: 2279807282441750580, guid: 06b109e3b0dddb04c8ca1107cf1430ef, type: 3}
+  bulletBossDPrefab: {fileID: 2279807282441750580, guid: 8fa51abbc315d4840984bba1e5f57ab8, type: 3}
   bulletFollowerPrefab: {fileID: 8131017225188809052, guid: 38aae0524404d18479e596ba7063d97c, type: 3}
 --- !u!4 &708643765
 Transform:

@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour
     public float maxShotDelay;
     public float curShotDelay;
 
-    SpriteRenderer spriteRenderer; 
-
     public GameObject bulletObjA;
     public GameObject bulletObjB;
     public GameObject itemCoin;
@@ -23,15 +21,25 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     public ObjectManager objectManager;
 
+    SpriteRenderer spriteRenderer;
+    Animator anime;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (enemyName == "B")
+            anime = GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
         switch (enemyName)
         {
+            case "B":
+                health = 3000;
+                Invoke("Stop", 2.0f);
+                break;
             case "L":
                 health = 40;
                 break;
@@ -44,8 +52,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Stop()
+    {
+        if (!gameObject.activeSelf)
+            return;
+
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = Vector2.zero;
+    }
+
     void Update()
     {
+        if (enemyName == "B")
+            return;
+
         Fire();
         Reload();
     }
@@ -95,8 +115,18 @@ public class Enemy : MonoBehaviour
             return;
 
         health -= damage;
-        spriteRenderer.sprite = sprites[1];
-        Invoke("ReturnSprite", 0.1f);
+
+        if (enemyName == "B")
+        {
+            anime.SetTrigger("OnHit");
+        }
+
+        else
+        {
+            spriteRenderer.sprite = sprites[1];
+            Invoke("ReturnSprite", 0.1f);
+        }
+        
 
         if (health <= 0)
         {
@@ -104,7 +134,7 @@ public class Enemy : MonoBehaviour
             playerLogic.score += enemyScore;
 
             //Random Ratio Item Drop
-            int ran = Random.Range(0, 10);
+            int ran = enemyName == "B" ? 0 : Random.Range(0, 10);
             if(ran < 5) //Nothing 0.5
             {
                 Debug.Log("Not Item");
@@ -140,7 +170,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "BorderBullet")
+        if (collision.gameObject.tag == "BorderBullet" && enemyName != "B")
         {
             transform.rotation = Quaternion.identity;
             gameObject.SetActive(false);

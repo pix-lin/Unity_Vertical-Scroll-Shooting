@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator anime;
 
+
+    public int patternIndex;
+    public int curPatternCount;
+    public int[] maxPatternCount;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -59,6 +64,74 @@ public class Enemy : MonoBehaviour
 
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.zero;
+
+        Invoke("Think", 2);
+    }
+
+    void Think()
+    {
+        patternIndex = patternIndex == 3 ? 0 : ++patternIndex;
+        curPatternCount = 0;
+
+        switch (patternIndex)
+        {
+            case 0:
+                FireFoward();
+                break;
+            case 1:
+                FireShot();
+                break;
+            case 2:
+                FireArc();
+                break;
+            case 3:
+                FireAround();
+                break;
+        }
+    }
+
+    void FireFoward()
+    {
+        Debug.Log("앞으로 4발 발사");
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireFoward", 2);
+
+        Invoke("Think", 2);
+    }
+
+    void FireShot()
+    {
+        Debug.Log("플레이어 방향으로 샷건");
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireFoward", 2);
+
+        Invoke("Think", 2);
+    }
+
+    void FireArc()
+    {
+        Debug.Log("부채 모양으로 발사");
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireFoward", 2);
+
+        Invoke("Think", 2);
+    }
+
+    void FireAround()
+    {
+        Debug.Log("원 형태로 전체 공격");
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireFoward", 2);
+
+        Invoke("Think", 2);
     }
 
     void Update()

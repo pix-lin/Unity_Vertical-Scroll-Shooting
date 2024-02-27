@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
 
     void Think()
     {
-        patternIndex = patternIndex == 3 ? 0 : ++patternIndex;
+        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
         curPatternCount = 0;
 
         switch (patternIndex)
@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("FireFoward", 2);
 
-        Invoke("Think", 2);
+        //Invoke("Think", 2);
     }
 
     void FireArc()
@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("FireFoward", 2);
 
-        Invoke("Think", 2);
+        //Invoke("Think", 2);
     }
 
     void FireAround()
@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("FireFoward", 2);
 
-        Invoke("Think", 2);
+        //Invoke("Think", 2);
     }
 
     void Update()

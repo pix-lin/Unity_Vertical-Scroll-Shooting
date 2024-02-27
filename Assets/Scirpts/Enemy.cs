@@ -92,7 +92,30 @@ public class Enemy : MonoBehaviour
 
     void FireFoward()
     {
-        Debug.Log("앞으로 4발 발사");
+        //Fire 4 Bullet Forward
+        GameObject bulletL1 = objectManager.MakeObj("BulletEnemyBossC");
+        GameObject bulletL2 = objectManager.MakeObj("BulletEnemyBossC");
+        GameObject bulletR1 = objectManager.MakeObj("BulletEnemyBossC");
+        GameObject bulletR2 = objectManager.MakeObj("BulletEnemyBossC");
+        bulletL1.transform.position = transform.position + Vector3.down * 1.0f + Vector3.left * 0.5f;
+        bulletL2.transform.position = transform.position + Vector3.down * 1.0f + Vector3.left * 0.75f;
+        bulletR1.transform.position = transform.position + Vector3.down * 1.0f + Vector3.right * 0.5f;
+        bulletR2.transform.position = transform.position + Vector3.down * 1.0f + Vector3.right * 0.75f;
+        Rigidbody2D rigidL1 = bulletL1.GetComponent<Rigidbody2D>();
+        Rigidbody2D rigidL2 = bulletL2.GetComponent<Rigidbody2D>();
+        Rigidbody2D rigidR1 = bulletR1.GetComponent<Rigidbody2D>();
+        Rigidbody2D rigidR2 = bulletR2.GetComponent<Rigidbody2D>();
+
+        Vector3 dirVecL1 = player.transform.position - transform.position + Vector3.down * 1.0f + Vector3.left * 0.5f;
+        Vector3 dirVecL2 = player.transform.position - transform.position + Vector3.down * 1.0f + Vector3.left * 0.75f;
+        Vector3 dirVecR1 = player.transform.position - transform.position + Vector3.down * 1.0f + Vector3.right * 0.5f;
+        Vector3 dirVecR2 = player.transform.position - transform.position + Vector3.down * 1.0f + Vector3.right * 0.75f;
+        rigidL1.AddForce(dirVecL1.normalized * 3.5f, ForceMode2D.Impulse);
+        rigidL2.AddForce(dirVecL2.normalized * 3.5f, ForceMode2D.Impulse);
+        rigidR1.AddForce(dirVecR1.normalized * 3.5f, ForceMode2D.Impulse);
+        rigidR2.AddForce(dirVecR2.normalized * 3.5f, ForceMode2D.Impulse);
+        
+        //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
@@ -104,6 +127,8 @@ public class Enemy : MonoBehaviour
     void FireShot()
     {
         Debug.Log("플레이어 방향으로 샷건");
+        
+        //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
@@ -115,6 +140,8 @@ public class Enemy : MonoBehaviour
     void FireArc()
     {
         Debug.Log("부채 모양으로 발사");
+
+        //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
@@ -126,6 +153,8 @@ public class Enemy : MonoBehaviour
     void FireAround()
     {
         Debug.Log("원 형태로 전체 공격");
+
+        //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])

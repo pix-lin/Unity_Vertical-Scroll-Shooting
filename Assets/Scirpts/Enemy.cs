@@ -156,7 +156,7 @@ public class Enemy : MonoBehaviour
         bullet.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        Vector2 dirVec = new Vector2(Mathf.Sin((float)curPatternCount / maxPatternCount[patternIndex]), -1);
+        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 10 * curPatternCount / maxPatternCount[patternIndex]), -1);
         rigid.AddForce(dirVec.normalized * 4f, ForceMode2D.Impulse);
 
         //Pattern Counting

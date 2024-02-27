@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
 
     void FireFoward()
     {
-        //Fire 4 Bullet Forward
+        //Fire 4 Bullets Forward
         GameObject bulletL1 = objectManager.MakeObj("BulletEnemyBossC");
         GameObject bulletL2 = objectManager.MakeObj("BulletEnemyBossC");
         GameObject bulletR1 = objectManager.MakeObj("BulletEnemyBossC");
@@ -119,35 +119,53 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireFoward", 2);
+            Invoke("FireFoward", 1.5f);
         else
-            Invoke("Think", 2);
+            Invoke("Think", 2.5f);
     }
 
     void FireShot()
     {
-        Debug.Log("플레이어 방향으로 샷건");
-        
+        //Random 5 Bullets
+        for (int index = 0; index < 6; index++)
+        {
+            GameObject bullet = objectManager.MakeObj("BulletEnemyD");
+            bullet.transform.position = transform.position;
+
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dirVec = player.transform.position - transform.position;
+            Vector2 ranVec = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(0f, 2f));
+            dirVec += ranVec;
+            rigid.AddForce(dirVec.normalized * 4f, ForceMode2D.Impulse);
+        }
+
         //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireShot", 2);
+            Invoke("FireShot", 1.25f);
         else
-            Invoke("Think", 2);
+            Invoke("Think", 2.5f);
     }
 
     void FireArc()
     {
-        Debug.Log("부채 모양으로 발사");
+        //Fire Arc Continue Fan Attack
+        GameObject bullet = objectManager.MakeObj("BulletEnemyC");
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = Quaternion.identity;
+
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        Vector2 dirVec = new Vector2(Mathf.Sin((float)curPatternCount / maxPatternCount[patternIndex]), -1);
+        rigid.AddForce(dirVec.normalized * 4f, ForceMode2D.Impulse);
 
         //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireArc", 2);
+            Invoke("FireArc", 0.25f);
         else
-            Invoke("Think", 2);
+            Invoke("Think", 2.5f);
     }
 
     void FireAround()
@@ -158,9 +176,9 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireAround", 2);
+            Invoke("FireAround", 0.75f);
         else
-            Invoke("Think", 2);
+            Invoke("Think", 2.5f);
     }
 
     void Update()

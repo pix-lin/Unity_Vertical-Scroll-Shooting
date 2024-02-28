@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,6 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Animator anime;
-
 
     public int patternIndex;
     public int curPatternCount;
@@ -92,6 +92,9 @@ public class Enemy : MonoBehaviour
 
     void FireFoward()
     {
+        if (health <= 0)
+            return;
+
         //Fire 4 Bullets Forward
         GameObject bulletL1 = objectManager.MakeObj("BulletEnemyBossC");
         GameObject bulletL2 = objectManager.MakeObj("BulletEnemyBossC");
@@ -101,6 +104,10 @@ public class Enemy : MonoBehaviour
         bulletL2.transform.position = transform.position + Vector3.down * 1.0f + Vector3.left * 0.75f;
         bulletR1.transform.position = transform.position + Vector3.down * 1.0f + Vector3.right * 0.5f;
         bulletR2.transform.position = transform.position + Vector3.down * 1.0f + Vector3.right * 0.75f;
+        bulletL1.transform.rotation = Quaternion.identity;
+        bulletL2.transform.rotation = Quaternion.identity;
+        bulletR1.transform.rotation = Quaternion.identity;
+        bulletR2.transform.rotation = Quaternion.identity;
         Rigidbody2D rigidL1 = bulletL1.GetComponent<Rigidbody2D>();
         Rigidbody2D rigidL2 = bulletL2.GetComponent<Rigidbody2D>();
         Rigidbody2D rigidR1 = bulletR1.GetComponent<Rigidbody2D>();
@@ -126,15 +133,19 @@ public class Enemy : MonoBehaviour
 
     void FireShot()
     {
+        if (health <= 0)
+            return;
+
         //Random 5 Bullets
         for (int index = 0; index < 6; index++)
         {
             GameObject bullet = objectManager.MakeObj("BulletEnemyD");
             bullet.transform.position = transform.position;
+            //bullet.transform.rotation = Quaternion.identity;
 
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector2 dirVec = player.transform.position - transform.position;
-            Vector2 ranVec = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(0f, 2f));
+            Vector2 ranVec = new Vector2(UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(0f, 2f));
             dirVec += ranVec;
             rigid.AddForce(dirVec.normalized * 4f, ForceMode2D.Impulse);
         }
@@ -150,39 +161,47 @@ public class Enemy : MonoBehaviour
 
     void FireArc()
     {
+        if (health <= 0)
+            return;
+
         //Fire Arc Continue Fan Attack
         GameObject bullet = objectManager.MakeObj("BulletEnemyC");
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        Vector2 dirVec1 = new Vector2(Mathf.Cos(Mathf.PI * 2 * curPatternCount / maxPatternCount[patternIndex]), -1);
+        Vector2 dirVec1 = new Vector2(Mathf.Cos(Mathf.PI * 4 * curPatternCount / maxPatternCount[patternIndex]), -1);
         rigid.AddForce(dirVec1.normalized * 4f, ForceMode2D.Impulse);
 
         //Pattern Counting
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireArc", 0.25f);
+            Invoke("FireArc", 0.6f);
         else
             Invoke("Think", 2.5f);
     }
 
     void FireAround()
     {
+        if (health <= 0)
+            return;
+
         //Fire Around
-        int roundNumA = 50;
-        for(int index = 0; index < roundNumA; index++)
+        int roundNumA = 40;
+        int roundNumB = 50;
+        int roundNum = curPatternCount % 2 == 0 ? roundNumA : roundNumB;
+        for(int index = 0; index < roundNum; index++)
         {
             GameObject bullet = objectManager.MakeObj("BulletEnemyD");
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.identity;
 
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-            Vector2 dirVec1 = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNumA), Mathf.Sin(Mathf.PI * 2 * index / roundNumA));
-            rigid.AddForce(dirVec1.normalized * 4f, ForceMode2D.Impulse);
+            Vector2 dirVec1 = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNum), Mathf.Sin(Mathf.PI * 2 * index / roundNum));
+            rigid.AddForce(dirVec1.normalized * 2f, ForceMode2D.Impulse);
 
-            Vector3 rotVec = Vector3.forward * 360 * index / roundNumA + Vector3.forward * 90;
+            Vector3 rotVec = Vector3.forward * 360 * index / roundNum + Vector3.forward * 90;
             bullet.transform.Rotate(rotVec);
         }
         
@@ -191,7 +210,7 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireAround", 0.75f);
+            Invoke("FireAround", 1.5f);
         else
             Invoke("Think", 2.5f);
     }
@@ -269,7 +288,7 @@ public class Enemy : MonoBehaviour
             playerLogic.score += enemyScore;
 
             //Random Ratio Item Drop
-            int ran = enemyName == "B" ? 0 : Random.Range(0, 10);
+            int ran = enemyName == "B" ? 0 : UnityEngine.Random.Range(0, 10);
             if(ran < 5) //Nothing 0.5
             {
                 Debug.Log("Not Item");
@@ -292,8 +311,9 @@ public class Enemy : MonoBehaviour
                 itemBoom.transform.position = transform.position;
             }
 
-            gameObject.SetActive(false);
+            CancelInvoke();
             transform.rotation = Quaternion.identity;
+            gameObject.SetActive(false);
         }
         
     }
@@ -313,6 +333,7 @@ public class Enemy : MonoBehaviour
             
         else if (collision.gameObject.tag == "PlayerBullet")
         {
+
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.damage);
             //collision.gameObject.SetActive(false);
@@ -320,4 +341,5 @@ public class Enemy : MonoBehaviour
         }
             
     }
+
 }

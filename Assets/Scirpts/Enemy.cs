@@ -156,8 +156,8 @@ public class Enemy : MonoBehaviour
         bullet.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 10 * curPatternCount / maxPatternCount[patternIndex]), -1);
-        rigid.AddForce(dirVec.normalized * 4f, ForceMode2D.Impulse);
+        Vector2 dirVec1 = new Vector2(Mathf.Cos(Mathf.PI * 2 * curPatternCount / maxPatternCount[patternIndex]), -1);
+        rigid.AddForce(dirVec1.normalized * 4f, ForceMode2D.Impulse);
 
         //Pattern Counting
         curPatternCount++;
@@ -170,7 +170,22 @@ public class Enemy : MonoBehaviour
 
     void FireAround()
     {
-        Debug.Log("원 형태로 전체 공격");
+        //Fire Around
+        int roundNumA = 50;
+        for(int index = 0; index < roundNumA; index++)
+        {
+            GameObject bullet = objectManager.MakeObj("BulletEnemyD");
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dirVec1 = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNumA), Mathf.Sin(Mathf.PI * 2 * index / roundNumA));
+            rigid.AddForce(dirVec1.normalized * 4f, ForceMode2D.Impulse);
+
+            Vector3 rotVec = Vector3.forward * 360 * index / roundNumA + Vector3.forward * 90;
+            bullet.transform.Rotate(rotVec);
+        }
+        
 
         //Pattern Counting
         curPatternCount++;

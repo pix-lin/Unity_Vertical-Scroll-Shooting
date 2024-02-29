@@ -43,7 +43,8 @@ public class Enemy : MonoBehaviour
         {
             case "B":
                 health = 3000;
-                Invoke("Stop", 2.0f);
+                //Invoke("Stop", 2.0f);
+                StartCoroutine(StopAfterDelay(2.0f));
                 break;
             case "L":
                 health = 40;
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-
+    /*
     private void Stop()
     {
         if (!gameObject.activeSelf)
@@ -70,6 +71,44 @@ public class Enemy : MonoBehaviour
 
     void Think()
     {
+        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+        curPatternCount = 0;
+
+        switch (patternIndex)
+        {
+            case 0:
+                FireFoward();
+                break;
+            case 1:
+                FireShot();
+                break;
+            case 2:
+                FireArc();
+                break;
+            case 3:
+                FireAround();
+                break;
+        }
+    }
+    */
+
+    IEnumerator StopAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (gameObject.activeSelf)
+        {
+            Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+            rigid.velocity = Vector2.zero;
+
+            StartCoroutine(ThinkAfterDelay(2.0f));
+        }
+    }
+
+    IEnumerator ThinkAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
         curPatternCount = 0;
 
@@ -126,9 +165,22 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireFoward", 1.5f);
+        {
+            //Invoke("FireFoward", 1.5f);
+            StartCoroutine(FireFowardAfterDelay(1.5f));
+        }
         else
-            Invoke("Think", 2.5f);
+        {
+            //Invoke("Think", 2.5f);
+            StartCoroutine(ThinkAfterDelay(2.5f));
+        }
+            
+    }
+
+    IEnumerator FireFowardAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        FireFoward();
     }
 
     void FireShot()
@@ -154,9 +206,21 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireShot", 1.25f);
+        {
+            //Invoke("FireShot", 1.25f);
+            StartCoroutine(FireShotAfterDelay(1.25f));
+        }
         else
-            Invoke("Think", 2.5f);
+        {
+            //Invoke("Think", 2.5f);
+            StartCoroutine(ThinkAfterDelay(2.5f));
+        }
+    }
+
+    IEnumerator FireShotAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        FireShot();
     }
 
     void FireArc()
@@ -177,9 +241,21 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireArc", 0.6f);
+        {
+            //Invoke("FireArc", 0.6f);
+            StartCoroutine(FireArcAfterDelay(0.6f));
+        }
         else
-            Invoke("Think", 2.5f);
+        {
+            //Invoke("Think", 2.5f);
+            StartCoroutine(ThinkAfterDelay(2.5f));
+        }
+    }
+
+    IEnumerator FireArcAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        FireArc();
     }
 
     void FireAround()
@@ -210,9 +286,21 @@ public class Enemy : MonoBehaviour
         curPatternCount++;
 
         if (curPatternCount < maxPatternCount[patternIndex])
-            Invoke("FireAround", 1.5f);
+        {
+            //Invoke("FireAround", 1.5f);
+            StartCoroutine(FireAroundAfterDelay(1.5f));
+        }
         else
-            Invoke("Think", 2.5f);
+        {
+            //Invoke("Think", 2.5f);
+            StartCoroutine(ThinkAfterDelay(2.5f));
+        }
+    }
+
+    IEnumerator FireAroundAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        FireAround();
     }
 
     void Update()
@@ -278,7 +366,7 @@ public class Enemy : MonoBehaviour
         else
         {
             spriteRenderer.sprite = sprites[1];
-            Invoke("ReturnSprite", 0.1f);
+            StartCoroutine(ReturnSpriteAfterDelay(0.1f));
         }
         
 
@@ -318,8 +406,9 @@ public class Enemy : MonoBehaviour
         
     }
 
-    void ReturnSprite()
+    IEnumerator ReturnSpriteAfterDelay(float delay)
     {
+        yield return new WaitForSeconds(delay);
         spriteRenderer.sprite = sprites[0];
     }
 

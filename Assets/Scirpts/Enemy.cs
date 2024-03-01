@@ -166,12 +166,10 @@ public class Enemy : MonoBehaviour
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-            //Invoke("FireFoward", 1.5f);
             StartCoroutine(FireFowardAfterDelay(1.5f));
         }
         else
         {
-            //Invoke("Think", 2.5f);
             StartCoroutine(ThinkAfterDelay(2.5f));
         }
             
@@ -180,11 +178,13 @@ public class Enemy : MonoBehaviour
     IEnumerator FireFowardAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        FireFoward();
+        if (gameObject.activeSelf && curPatternCount < maxPatternCount[patternIndex])
+            FireFoward();
     }
 
     void FireShot()
     {
+        
         if (health <= 0)
             return;
 
@@ -207,12 +207,10 @@ public class Enemy : MonoBehaviour
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-            //Invoke("FireShot", 1.25f);
             StartCoroutine(FireShotAfterDelay(1.25f));
         }
         else
         {
-            //Invoke("Think", 2.5f);
             StartCoroutine(ThinkAfterDelay(2.5f));
         }
     }
@@ -220,7 +218,8 @@ public class Enemy : MonoBehaviour
     IEnumerator FireShotAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        FireShot();
+        if (gameObject.activeSelf && curPatternCount < maxPatternCount[patternIndex])
+            FireShot();
     }
 
     void FireArc()
@@ -242,12 +241,10 @@ public class Enemy : MonoBehaviour
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-            //Invoke("FireArc", 0.6f);
             StartCoroutine(FireArcAfterDelay(0.6f));
         }
         else
         {
-            //Invoke("Think", 2.5f);
             StartCoroutine(ThinkAfterDelay(2.5f));
         }
     }
@@ -255,11 +252,13 @@ public class Enemy : MonoBehaviour
     IEnumerator FireArcAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        FireArc();
+        if (gameObject.activeSelf && curPatternCount < maxPatternCount[patternIndex])
+            FireArc();
     }
 
     void FireAround()
     {
+        
         if (health <= 0)
             return;
 
@@ -287,12 +286,10 @@ public class Enemy : MonoBehaviour
 
         if (curPatternCount < maxPatternCount[patternIndex])
         {
-            //Invoke("FireAround", 1.5f);
             StartCoroutine(FireAroundAfterDelay(1.5f));
         }
         else
         {
-            //Invoke("Think", 2.5f);
             StartCoroutine(ThinkAfterDelay(2.5f));
         }
     }
@@ -300,7 +297,8 @@ public class Enemy : MonoBehaviour
     IEnumerator FireAroundAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        FireAround();
+        if (gameObject.activeSelf && curPatternCount < maxPatternCount[patternIndex])
+            FireAround();
     }
 
     void Update()
@@ -399,7 +397,6 @@ public class Enemy : MonoBehaviour
                 itemBoom.transform.position = transform.position;
             }
 
-            CancelInvoke();
             transform.rotation = Quaternion.identity;
             gameObject.SetActive(false);
         }
@@ -422,7 +419,7 @@ public class Enemy : MonoBehaviour
             
         else if (collision.gameObject.tag == "PlayerBullet")
         {
-
+            Debug.Log("Bullet!!");
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.damage);
             //collision.gameObject.SetActive(false);

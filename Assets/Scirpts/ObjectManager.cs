@@ -262,6 +262,9 @@ public class ObjectManager : MonoBehaviour
             case "BulletFollwer":
                 targetPool = bulletFollower;
                 break;
+            default:
+                Debug.Log("아무것도 해당되지 않음");
+                break;
         }
 
         return targetPool;

@@ -191,7 +191,7 @@ public class Enemy : MonoBehaviour
         //Random 5 Bullets
         for (int index = 0; index < 6; index++)
         {
-            GameObject bullet = objectManager.MakeObj("BulletEnemyD");
+            GameObject bullet = objectManager.MakeObj("BulletEnemyBossD");
             bullet.transform.position = transform.position;
             //bullet.transform.rotation = Quaternion.identity;
 
@@ -228,7 +228,7 @@ public class Enemy : MonoBehaviour
             return;
 
         //Fire Arc Continue Fan Attack
-        GameObject bullet = objectManager.MakeObj("BulletEnemyC");
+        GameObject bullet = objectManager.MakeObj("BulletEnemyBossC");
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
 
@@ -238,7 +238,6 @@ public class Enemy : MonoBehaviour
 
         //Pattern Counting
         curPatternCount++;
-
         if (curPatternCount < maxPatternCount[patternIndex])
         {
             StartCoroutine(FireArcAfterDelay(0.6f));
@@ -268,7 +267,7 @@ public class Enemy : MonoBehaviour
         int roundNum = curPatternCount % 2 == 0 ? roundNumA : roundNumB;
         for(int index = 0; index < roundNum; index++)
         {
-            GameObject bullet = objectManager.MakeObj("BulletEnemyD");
+            GameObject bullet = objectManager.MakeObj("BulletEnemyBossD");
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.identity;
 
@@ -422,10 +421,8 @@ public class Enemy : MonoBehaviour
             Debug.Log("Bullet!!");
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.damage);
-            //collision.gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
         }
-            
     }
 
 }

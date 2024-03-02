@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public bool isTouchRight;
     public bool isHit;
     public bool isBoomTime;
+    public bool isRespawnTime;
 
     public int life;
     public int maxLife;
@@ -34,10 +35,31 @@ public class Player : MonoBehaviour
     public GameObject[] followers;
 
     Animator anime;
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         anime = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(UnbetableWithDelay(3.0f));
+    }
+
+    IEnumerator UnbetableWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (isRespawnTime)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+        }
+        else
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
     }
 
     void Update()

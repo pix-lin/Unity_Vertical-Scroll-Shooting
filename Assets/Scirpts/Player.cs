@@ -61,11 +61,17 @@ public class Player : MonoBehaviour
         if (isRespawnTime)
         {
             spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+
+            for (int index = 0; index < followers.Length; index++)
+                followers[index].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
         }
 
         else
         {
             spriteRenderer.color = new Color(1, 1, 1, 1);
+
+            for (int index = 0; index < followers.Length; index++)
+                followers[index].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
 

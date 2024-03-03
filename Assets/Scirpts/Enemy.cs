@@ -48,12 +48,15 @@ public class Enemy : MonoBehaviour
                 break;
             case "L":
                 health = 40;
+                spriteRenderer.sprite = sprites[0];
                 break;
             case "M":
                 health = 10;
+                spriteRenderer.sprite = sprites[0];
                 break;
             case "S":
                 health = 5;
+                spriteRenderer.sprite = sprites[0];
                 break;
         }
     }

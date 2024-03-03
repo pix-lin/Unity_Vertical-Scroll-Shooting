@@ -50,12 +50,19 @@ public class Player : MonoBehaviour
 
     IEnumerator UnbetableWithDelay(float delay)
     {
+        Unbetable();
         yield return new WaitForSeconds(delay);
+        Unbetable(); 
+    }
 
+    void Unbetable()
+    {
+        isRespawnTime = !isRespawnTime;
         if (isRespawnTime)
         {
             spriteRenderer.color = new Color(1, 1, 1, 0.5f);
         }
+
         else
         {
             spriteRenderer.color = new Color(1, 1, 1, 1);
@@ -236,6 +243,9 @@ public class Player : MonoBehaviour
 
         else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
+            if (isRespawnTime)
+                return;
+
             if (isHit)
                 return;
 

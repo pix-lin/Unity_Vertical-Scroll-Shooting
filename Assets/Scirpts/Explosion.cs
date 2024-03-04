@@ -13,7 +13,8 @@ public class Explosion : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(DisableWithDelay(2.0f));
+        if (gameObject.activeSelf)
+            StartCoroutine(DisableWithDelay(2.0f));
     }
 
     IEnumerator DisableWithDelay(float delay)

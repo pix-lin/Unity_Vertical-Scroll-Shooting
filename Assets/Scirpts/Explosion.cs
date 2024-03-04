@@ -11,6 +11,18 @@ public class Explosion : MonoBehaviour
         anime = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(DisableWithDelay(2.0f));
+    }
+
+    IEnumerator DisableWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        gameObject.SetActive(false);
+    }
+
     public void StartExplosion(string target)
     {
         anime.SetTrigger("OnExplosion");

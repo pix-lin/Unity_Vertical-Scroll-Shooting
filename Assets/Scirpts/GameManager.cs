@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
         Rigidbody2D rigid = enemy.GetComponent<Rigidbody2D>();
         Enemy enemyLogic = enemy.GetComponent<Enemy>();
         enemyLogic.player = player;
+        enemyLogic.gameManager = this;
         enemyLogic.objectManager = objectManager;
 
         if (enemyPoint == 5 || enemyPoint == 6) //¿ÞÂÊ
@@ -180,6 +181,15 @@ public class GameManager : MonoBehaviour
         player.transform.position = Vector3.down * 3.5f;
         player.SetActive(true);
         playerLogic.isHit = false;
+    }
+
+    public void CallExplosion(Vector3 Pos, string type)
+    {
+        GameObject explosion = objectManager.MakeObj("Explosion");
+        Explosion explosionLogic = explosion.GetComponent<Explosion>();
+
+        explosion.transform.position = Pos;
+        explosionLogic.StartExplosion(type);
     }
 
     public void GameOver()

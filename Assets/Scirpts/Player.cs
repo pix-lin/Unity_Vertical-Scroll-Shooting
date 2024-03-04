@@ -258,6 +258,7 @@ public class Player : MonoBehaviour
             isHit = true;
             life--;
             gameManager.UpdateLifeUI(life);
+            gameManager.CallExplosion(transform.position, "P"); ;
 
             if(life == 0) {
                 gameManager.GameOver();

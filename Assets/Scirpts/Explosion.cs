@@ -6,7 +6,7 @@ public class Explosion : MonoBehaviour
 {
     Animator anime;
 
-    void Start()
+    void Awake()
     {
         anime = GetComponent<Animator>();
     }

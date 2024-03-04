@@ -271,7 +271,6 @@ public class Player : MonoBehaviour
 
             gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
-            isHit = true;
         }
 
         else if (collision.gameObject.tag == "Item")

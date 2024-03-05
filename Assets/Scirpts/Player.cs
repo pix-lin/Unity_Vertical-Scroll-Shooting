@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     public bool isBoomTime;
     public bool isRespawnTime;
 
+    public bool[] joyControl; //어떤 버튼을 눌렀나
+    public bool isControl; //버튼을 눌렀나
+
     public int life;
     public int maxLife;
     public int score;
@@ -207,6 +210,24 @@ public class Player : MonoBehaviour
 
     }
 
+    public void JoyPanel(int type)
+    {
+        for (int index = 0; index < 9; index++)
+        {
+            joyControl[index] = index == type;
+        }
+    }
+
+    public void JoyDown()
+    {
+        isControl = true;
+    }
+
+    public void JoyUp()
+    {
+        isControl= false;
+    }
+    
     void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");

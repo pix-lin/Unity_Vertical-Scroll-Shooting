@@ -103,9 +103,14 @@ public class Player : MonoBehaviour
         isButtonB = true;
     }
 
+    public void ButtonBUp()
+    {
+        isButtonB = false;
+    }
+
     void Fire()
     {
-        //if (!Input.GetButton("Jump"))
+        //if (!Input.GetButton("Fire1"))
         //return;
 
         if (!isButtonA)

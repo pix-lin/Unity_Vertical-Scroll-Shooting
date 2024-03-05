@@ -7,6 +7,8 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    public int stage;
+
     public string[] enemyObjs;
     public Transform[] spawnPoints;
 
@@ -32,6 +34,31 @@ public class GameManager : MonoBehaviour
         playerLogic = player.GetComponent<Player>();
         enemyObjs = new string[] { "EnemyL", "EnemyM", "EnemyS", "EnemyB"};
         ReadSpawnFile();
+        StageStart();
+    }
+
+    public void StageStart()
+    {
+        //Stage UI Load
+
+
+        //Enemy Spawn File Read
+        ReadSpawnFile();
+
+        //Fade In
+    }
+
+    public void StageEnd()
+    {
+        //Clear UI Load
+
+        //Stage Increament
+        stage++;
+
+        //FadeOut
+
+        //Player Reposition
+
     }
 
     void ReadSpawnFile()
@@ -42,7 +69,7 @@ public class GameManager : MonoBehaviour
         spawnEnd = false;
 
         //리스폰 파일 읽기
-        TextAsset textFile = Resources.Load("Stage 0") as TextAsset;
+        TextAsset textFile = Resources.Load("Stage " + stage.ToString()) as TextAsset;
         StringReader stringReader = new StringReader(textFile.text);
 
         while (stringReader != null)

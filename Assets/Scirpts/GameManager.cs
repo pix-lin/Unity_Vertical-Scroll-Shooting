@@ -8,6 +8,8 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
     public int stage;
+    public Animator stageAnime;
+    public Animator clearAnime;
 
     public string[] enemyObjs;
     public Transform[] spawnPoints;
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
     public void StageStart()
     {
         //Stage UI Load
-
+        stageAnime.SetTrigger("On");
 
         //Enemy Spawn File Read
         ReadSpawnFile();
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
     public void StageEnd()
     {
         //Clear UI Load
+        clearAnime.SetTrigger("On");
 
         //Stage Increament
         stage++;

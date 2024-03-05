@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public bool[] joyControl; //어떤 버튼을 눌렀나
     public bool isControl; //버튼을 눌렀나
+    public bool isButtonA;
+    public bool isButtonB;
 
     public int life;
     public int maxLife;
@@ -86,9 +88,27 @@ public class Player : MonoBehaviour
         Reload();
     }
 
+    public void ButtonADown()
+    {
+        isButtonA = true;
+    }
+
+    public void ButtonAUp()
+    {
+        isButtonA= false;
+    }
+
+    public void ButtonBDown()
+    {
+        isButtonB = true;
+    }
+
     void Fire()
     {
-        if (!Input.GetButton("Fire1"))
+        //if (!Input.GetButton("Jump"))
+        //return;
+
+        if (!isButtonA)
             return;
 
         if (curShotDelay < maxShotDelay)
@@ -136,7 +156,10 @@ public class Player : MonoBehaviour
 
     void Boom()
     {
-        if (!Input.GetButton("Fire2"))
+        //if (!Input.GetButton("Fire2"))
+        //return;
+
+        if (!isButtonB)
             return;
 
         if (isBoomTime)

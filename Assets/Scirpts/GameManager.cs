@@ -71,7 +71,10 @@ public class GameManager : MonoBehaviour
 
         //Stage Increament
         stage++;
-        StartCoroutine(StageStartWithDelay(2.5f));
+        if (stage > 2)
+            GameOver();
+        else
+            StartCoroutine(StageStartWithDelay(4.5f));
     }
 
     void ReadSpawnFile()

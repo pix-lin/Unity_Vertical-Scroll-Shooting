@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         switch (enemyName)
         {
             case "B":
-                health = 3000;
+                health = 500;
                 //Invoke("Stop", 2.0f);
                 StartCoroutine(StopAfterDelay(2.0f));
                 break;

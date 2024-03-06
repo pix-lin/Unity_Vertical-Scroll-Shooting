@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public int stage;
     public Animator stageAnime;
     public Animator clearAnime;
+    public Animator fadeAnime;
+    public Transform playerPos;
 
     public string[] enemyObjs;
     public Transform[] spawnPoints;
@@ -36,11 +39,13 @@ public class GameManager : MonoBehaviour
         playerLogic = player.GetComponent<Player>();
         enemyObjs = new string[] { "EnemyL", "EnemyM", "EnemyS", "EnemyB"};
         ReadSpawnFile();
-        StageStart();
+        StartCoroutine(StageStartWithDelay(0.2f));
     }
 
-    public void StageStart()
+    IEnumerator StageStartWithDelay(float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         //Stage UI Load
         stageAnime.SetTrigger("On");
         stageAnime.GetComponent<TextMeshProUGUI>().text = "Stage " + stage.ToString() + "\nStart!!";
@@ -50,6 +55,7 @@ public class GameManager : MonoBehaviour
         ReadSpawnFile();
 
         //Fade In
+        fadeAnime.SetTrigger("In");
     }
 
     public void StageEnd()
@@ -57,13 +63,15 @@ public class GameManager : MonoBehaviour
         //Clear UI Load
         clearAnime.SetTrigger("On");
 
-        //Stage Increament
-        stage++;
-
         //FadeOut
+        fadeAnime.SetTrigger("Out");
 
         //Player Reposition
+        player.transform.position = playerPos.position;
 
+        //Stage Increament
+        stage++;
+        StartCoroutine(StageStartWithDelay(2.5f));
     }
 
     void ReadSpawnFile()

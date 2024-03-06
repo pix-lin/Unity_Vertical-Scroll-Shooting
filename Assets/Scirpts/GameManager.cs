@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     {
         //Stage UI Load
         stageAnime.SetTrigger("On");
+        stageAnime.GetComponent<TextMeshProUGUI>().text = "Stage " + stage.ToString() + "\nStart!!";
+        clearAnime.GetComponent<TextMeshProUGUI>().text = "Stage " + stage.ToString() + "\nClear!!";
 
         //Enemy Spawn File Read
         ReadSpawnFile();

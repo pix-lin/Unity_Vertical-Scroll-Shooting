@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         //Stage Increament
         stage++;
         if (stage > 2)
-            StartCoroutine(GameOver(4.5f));
+            StartCoroutine(GameOver(5.5f));
         else
             StartCoroutine(StageStartWithDelay(4.5f));
     }
@@ -235,12 +235,7 @@ public class GameManager : MonoBehaviour
         explosionLogic.StartExplosion(type);
     }
 
-    public void GameOver()
-    {
-        gameOver.SetActive(true);
-    }
-
-    IEnumerator GameOver(float delay)
+    public IEnumerator GameOver(float delay)
     {
         yield return new WaitForSeconds(delay);
         gameOver.SetActive(false);

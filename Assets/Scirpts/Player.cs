@@ -323,7 +323,7 @@ public class Player : MonoBehaviour
             gameManager.CallExplosion(transform.position, "P"); ;
 
             if(life == 0) {
-                gameManager.GameOver();
+                gameManager.StartCoroutine(gameManager.GameOver(0.1f));
             }
 
             else
